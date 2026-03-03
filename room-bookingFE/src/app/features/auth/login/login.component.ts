@@ -86,6 +86,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  triggerGoogleSignIn(): void {
+    if (typeof google === 'undefined') {
+      this.errorMessage = 'Google Sign-In is not available. Please try again later.';
+      return;
+    }
+    google.accounts.id.prompt();
+  }
+
   private initGoogleSignIn(): void {
     if (typeof google === 'undefined') return;
 
@@ -93,11 +101,6 @@ export class LoginComponent implements OnInit {
       client_id: 'YOUR_GOOGLE_CLIENT_ID',
       callback: (response: any) => this.handleGoogleCallback(response),
     });
-
-    google.accounts.id.renderButton(
-      document.getElementById('google-btn-container'),
-      { theme: 'outline', size: 'large', width: '100%', text: 'signin_with' }
-    );
   }
 
   private handleGoogleCallback(response: any): void {
