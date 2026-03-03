@@ -8,6 +8,9 @@ import { MyBookingsComponent } from './features/my-bookings/my-bookings.componen
 import { AiSuggestionsComponent } from './features/ai-suggestions/ai-suggestions.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { SettingsComponent } from './features/settings/settings.component';
+import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './features/terms-of-use/terms-of-use.component';
+import { ContactSupportComponent } from './features/contact-support/contact-support.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -25,8 +28,11 @@ const routes: Routes = [
       { path: 'find-room',      component: FindRoomComponent },
       { path: 'my-bookings',    component: MyBookingsComponent },
       { path: 'ai-suggestions', component: AiSuggestionsComponent },
-      { path: 'profile',        component: ProfileComponent },
-      { path: 'settings',       component: SettingsComponent },
+      { path: 'profile',          component: ProfileComponent },
+      { path: 'settings',         component: SettingsComponent },
+      { path: 'privacy-policy',   component: PrivacyPolicyComponent },
+      { path: 'terms-of-use',     component: TermsOfUseComponent },
+      { path: 'contact-support',  component: ContactSupportComponent },
     ],
   },
   { path: '**', redirectTo: 'auth/login' },
