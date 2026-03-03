@@ -1,0 +1,69 @@
+<!-- Mobile overlay backdrop -->
+<div
+  *ngIf="isOpen"
+  class="fixed inset-0 z-20 bg-black/40 lg:hidden"
+  (click)="close()"
+></div>
+
+<!-- Sidebar panel -->
+<aside
+  class="fixed top-0 left-0 z-30 h-full w-64 bg-white border-r border-[#e5e7eb] flex flex-col transition-transform duration-300 lg:translate-x-0 lg:static lg:z-auto"
+  [ngClass]="{ '-translate-x-full': !isOpen, 'translate-x-0': isOpen }"
+>
+  <!-- Brand -->
+  <div class="p-6 flex flex-row gap-3 items-center shrink-0">
+    <div class="bg-[#257bf4] rounded-lg flex items-center justify-center shrink-0 w-10 h-10">
+      <mat-icon class="text-white text-[22px]">school</mat-icon>
+    </div>
+    <div class="flex flex-col">
+      <span class="text-[#0f172a] font-jakarta text-[17px] font-bold leading-tight">UEL E-Booking</span>
+      <span class="text-[#60728a] font-jakarta text-xs leading-4">Student Portal</span>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="px-4 py-2 flex flex-col gap-1 flex-1 overflow-y-auto">
+    <a
+      *ngFor="let item of menuItems"
+      [routerLink]="item.route"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="close()"
+      class="rounded-lg py-2.5 px-3 flex items-center gap-3 font-jakarta text-base font-medium transition-colors duration-150 cursor-pointer no-underline"
+      [ngClass]="rla.isActive
+        ? 'bg-[#257bf4] text-white'
+        : 'text-[#60728a] hover:bg-[#f1f5f9] hover:text-[#1e293b]'"
+    >
+      <mat-icon class="text-[20px] leading-none shrink-0">{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </a>
+  </nav>
+
+  <!-- Bottom section: Settings + Logout -->
+  <div class="px-4 py-4 flex flex-col gap-1 shrink-0 border-t border-[#f1f5f9]">
+    <a
+      *ngFor="let item of bottomItems"
+      [routerLink]="item.route"
+      routerLinkActive
+      #rlaBottom="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="close()"
+      class="rounded-lg py-2.5 px-3 flex items-center gap-3 font-jakarta text-base font-medium transition-colors duration-150 cursor-pointer no-underline"
+      [ngClass]="rlaBottom.isActive
+        ? 'bg-[#257bf4] text-white'
+        : 'text-[#60728a] hover:bg-[#f1f5f9] hover:text-[#1e293b]'"
+    >
+      <mat-icon class="text-[20px] leading-none shrink-0">{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </a>
+
+    <button
+      (click)="logout()"
+      class="rounded-lg py-2.5 px-3 flex items-center gap-3 text-[#ef4444] font-jakarta text-base font-medium transition-colors duration-150 hover:bg-red-50 w-full text-left"
+    >
+      <mat-icon class="text-[20px] leading-none shrink-0">logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</aside>

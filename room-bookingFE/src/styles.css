@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   Typography System — reusable heading classes
+   Source: src/styles/typography.css
+   ============================================= */
+@layer components {
+  .heading-xl {
+    @apply font-jakarta text-4xl font-bold text-gray-900;
+  }
+
+  .heading-lg {
+    @apply font-jakarta text-3xl font-semibold text-gray-900;
+  }
+
+  .heading-md {
+    @apply font-jakarta text-2xl font-semibold text-gray-800;
+  }
+
+  .heading-sm {
+    @apply font-jakarta text-xl font-medium text-gray-800;
+  }
+}
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

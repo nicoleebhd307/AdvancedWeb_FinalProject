@@ -1,0 +1,202 @@
+﻿<div
+  class="bg-[#f5f7f8] min-h-screen flex items-center justify-center px-4 py-10"
+>
+  <div
+    class="bg-white rounded-xl w-full max-w-[1000px] flex flex-col lg:flex-row overflow-hidden"
+    style="box-shadow: 0px 8px 10px -6px rgba(0,0,0,0.1), 0px 20px 25px -5px rgba(0,0,0,0.1);"
+  >
+    <!-- Left Panel: Branding â€” hidden on mobile, shown lg+ -->
+    <div
+      class="hidden lg:flex bg-[rgba(37,123,244,0.05)] p-12 flex-col items-center justify-center flex-shrink-0 relative overflow-hidden lg:w-[420px]"
+    >
+      <!-- Blur decorations -->
+      <div class="bg-[rgba(37,123,244,0.05)] rounded-full w-48 h-48 absolute right-[-40px] top-[-40px]" style="filter: blur(20px);"></div>
+      <div class="bg-[rgba(37,123,244,0.10)] rounded-full w-64 h-64 absolute left-[-40px] bottom-[-40px]" style="filter: blur(32px);"></div>
+
+      <!-- Logo Icon -->
+      <div class="flex justify-center mb-6 relative z-10">
+        <div class="bg-[rgba(37,123,244,0.12)] rounded-full w-[87px] h-[77px] flex items-center justify-center">
+          <mat-icon class="text-[#257bf4]" style="font-size: 48px; width: 48px; height: 48px;">school</mat-icon>
+        </div>
+      </div>
+
+      <p class="text-[#1e293b] text-center font-jakarta text-3xl leading-9 font-bold mb-4 relative z-10">
+        Empowering Your<br />Academic Journey
+      </p>
+      <p class="text-[#475569] text-center font-jakarta text-base leading-6 font-normal mb-8 relative z-10">
+        Reserve study spaces and collaborate with<br />ease through our smart booking ecosystem.
+      </p>
+
+      <!-- Mock Booking Card -->
+      <div
+        class="bg-white rounded-2xl border border-[#f1f5f9] p-6 flex flex-col gap-4 w-full relative z-10"
+        style="box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);"
+      >
+        <div class="border-b border-[#f8fafc] pb-3 flex flex-row gap-3 items-center">
+          <div class="bg-[rgba(37,123,244,0.20)] rounded flex items-center justify-center w-10 h-10 flex-shrink-0">
+            <mat-icon class="text-[#257bf4]" style="font-size: 20px; width: 20px; height: 20px;">event_available</mat-icon>
+          </div>
+          <div class="flex flex-col gap-1 flex-1">
+            <div class="bg-[#e2e8f0] rounded w-24 h-3"></div>
+            <div class="bg-[#f1f5f9] rounded w-16 h-2"></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <div class="bg-[#f1f5f9] rounded h-3 w-full"></div>
+          <div class="bg-[#f1f5f9] rounded h-3 w-3/4"></div>
+          <div class="bg-[#f1f5f9] rounded h-3 w-1/2"></div>
+        </div>
+        <div class="border-t border-[#f8fafc] pt-4 flex flex-row items-center justify-between">
+          <div class="bg-[rgba(37,123,244,0.10)] rounded w-20 h-8"></div>
+          <div class="bg-[#257bf4] rounded w-20 h-8"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Login Form -->
+    <div class="flex-1 p-8 lg:p-16 flex flex-col justify-center min-w-0">
+
+      <!-- Brand -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="bg-[#257bf4] rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
+          <mat-icon class="text-white" style="font-size: 18px; width: 18px; height: 18px;">calendar_today</mat-icon>
+        </div>
+        <span class="text-[#0f172a] font-jakarta text-xl font-bold">UEL E-Booking</span>
+      </div>
+
+      <h1 class="text-[#1e293b] font-jakarta text-2xl font-bold mb-1">Welcome Back</h1>
+      <p class="text-[#64748b] font-jakarta text-sm mb-8">
+        Please enter your university credentials to sign in.
+      </p>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="flex flex-col gap-5">
+
+          <!-- â”€â”€ Email â”€â”€ -->
+          <div class="flex flex-col gap-1.5">
+            <label for="email" class="text-[#334155] font-semibold text-sm">University Email</label>
+            <div class="relative">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="e.g. student@uel.edu.vn"
+                autocomplete="email"
+                class="bg-white rounded-lg border border-[#e2e8f0] py-3.5 pr-4 pl-10 w-full text-[#1e293b] font-jakarta text-base placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#257bf4] focus:border-[#257bf4] transition-colors"
+                [class.border-red-400]="emailControl?.invalid && emailControl?.touched"
+              />
+              <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#94a3b8]" style="font-size: 18px; width: 18px; height: 18px;">email</mat-icon>
+            </div>
+            <div *ngIf="emailControl?.invalid && emailControl?.touched" class="flex flex-col gap-0.5">
+              <p *ngIf="emailControl?.errors?.['required']" class="text-red-500 text-xs font-jakarta">Email is required.</p>
+              <p *ngIf="emailControl?.errors?.['pattern']" class="text-red-500 text-xs font-jakarta">
+                Must be a valid <strong>&#64;uel.edu.vn</strong> email address.
+              </p>
+            </div>
+          </div>
+
+          <!-- â”€â”€ Password â”€â”€ -->
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <label for="password" class="text-[#334155] font-semibold text-sm">Password</label>
+              <span class="text-[#257bf4] font-jakarta text-sm font-medium cursor-pointer hover:underline select-none">
+                Forgot password?
+              </span>
+            </div>
+            <div class="relative">
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="********"
+                autocomplete="current-password"
+                class="bg-white rounded-lg border border-[#e2e8f0] py-3.5 pr-11 pl-10 w-full text-[#1e293b] font-jakarta text-base placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#257bf4] focus:border-[#257bf4] transition-colors"
+                [class.border-red-400]="passwordControl?.invalid && passwordControl?.touched"
+              />
+              <!-- Lock icon -->
+              <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#94a3b8]" style="font-size: 18px; width: 18px; height: 18px;">lock</mat-icon>
+              <!-- Toggle visibility -->
+              <button
+                type="button"
+                (click)="togglePassword()"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-[#94a3b8] hover:text-[#64748b] transition-colors focus:outline-none"
+                [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+              >
+                <mat-icon style="font-size: 20px; width: 20px; height: 20px;">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <p *ngIf="passwordControl?.invalid && passwordControl?.touched && passwordControl?.errors?.['required']"
+               class="text-red-500 text-xs font-jakarta">
+              Password is required.
+            </p>
+          </div>
+
+          <!-- Remember device -->
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="remember" class="w-4 h-4 rounded border border-[#cbd5e1] accent-[#257bf4] cursor-pointer" />
+            <label for="remember" class="text-[#475569] font-jakarta text-sm cursor-pointer select-none">
+              Remember me
+            </label>
+          </div>
+
+          <!-- Backend error -->
+          <div *ngIf="errorMessage" class="w-full bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+            <p class="text-red-600 text-sm font-jakarta">{{ errorMessage }}</p>
+          </div>
+
+          <!-- Sign In button â€” disabled when form invalid OR loading -->
+          <button
+            type="submit"
+            [disabled]="isLoading || isFormInvalid"
+            class="rounded-lg py-3 px-6 flex items-center justify-center gap-2 w-full text-white font-jakarta text-base font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            style="background: linear-gradient(90deg, rgba(37,123,244,1) 0%, rgba(37,99,235,1) 100%); box-shadow: 0px 4px 6px -4px rgba(37,123,244,0.2), 0px 10px 15px -3px rgba(37,123,244,0.2);"
+          >
+            <span *ngIf="isLoading" class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            <span>{{ isLoading ? 'Signing In...' : 'Sign In' }}</span>
+          </button>
+
+        </div>
+      </form>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 my-6">
+        <div class="flex-1 border-t border-[#e2e8f0]"></div>
+        <span class="text-[#94a3b8] font-jakarta text-sm flex-shrink-0">or continue with</span>
+        <div class="flex-1 border-t border-[#e2e8f0]"></div>
+      </div>
+
+      <!-- Google Sign In (custom button) -->
+      <div class="w-full flex flex-col items-center gap-3">
+        <button
+          type="button"
+          (click)="triggerGoogleSignIn()"
+          [disabled]="isGoogleLoading"
+          class="w-full flex items-center justify-center gap-3 rounded-lg border border-[#e2e8f0] bg-white py-3 px-4 font-jakarta text-[#1e293b] text-sm font-medium transition-all hover:bg-[#f8fafc] hover:border-[#cbd5e1] disabled:opacity-60 disabled:cursor-not-allowed"
+          style="box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);"
+        >
+          <!-- Google 'G' logo (brand mark — not available in Material Icons) -->
+          <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          <span>{{ isGoogleLoading ? 'Verifying...' : 'Continue with Google' }}</span>
+          <span *ngIf="isGoogleLoading" class="inline-block w-4 h-4 border-2 border-[#257bf4] border-t-transparent rounded-full animate-spin ml-auto"></span>
+        </button>
+      </div>
+
+      <!-- Demo credentials hint -->
+      <div class="mt-8 pt-6 border-t border-[#f1f5f9]">
+        <div class="flex flex-wrap gap-x-3 gap-y-1 items-center justify-center text-[#94a3b8] text-xs font-jakarta">
+          <span class="font-medium text-[#64748b]">Demo:</span>
+          <span>admin&#64;uel.edu.vn / admin123</span>
+          <span class="text-[#cbd5e1]">&middot;</span>
+          <span>student1&#64;uel.edu.vn / student123</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

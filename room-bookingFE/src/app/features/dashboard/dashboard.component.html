@@ -1,0 +1,22 @@
+<div class="max-w-4xl mx-auto">
+  <h1 class="heading-lg mb-2">Dashboard</h1>
+  <p class="text-[#64748b] font-jakarta text-base mb-8">
+    Welcome back, <strong class="text-[#1e293b]">{{ currentUser?.email }}</strong>. You are logged in as
+    <span class="capitalize font-semibold text-[#257bf4]">{{ currentUser?.role }}</span>.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white rounded-xl border border-[#e2e8f0] p-6" style="box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);">
+      <h2 class="heading-sm mb-1">Room Booking</h2>
+      <p class="text-[#64748b] font-jakarta text-sm">Book a study room or lab.</p>
+    </div>
+    <div class="bg-white rounded-xl border border-[#e2e8f0] p-6" style="box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);">
+      <h2 class="heading-sm mb-1">My Bookings</h2>
+      <p class="text-[#64748b] font-jakarta text-sm">View and manage your reservations.</p>
+    </div>
+    <div class="bg-white rounded-xl border border-[#e2e8f0] p-6" style="box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);">
+      <h2 class="heading-sm mb-1">Schedule</h2>
+      <p class="text-[#64748b] font-jakarta text-sm">Check room availability.</p>
+    </div>
+  </div>
+</div>

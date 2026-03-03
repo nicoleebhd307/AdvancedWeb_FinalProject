@@ -1,0 +1,24 @@
+<div class="flex h-screen bg-[#f5f7f8] overflow-hidden">
+  <!-- Sidebar — fixed on mobile (overlay), static on lg+ (in-flow) -->
+  <app-sidebar [(isOpen)]="isSidebarOpen"></app-sidebar>
+
+  <!-- Main content area -->
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
+    <!-- Mobile top bar (hamburger) -->
+    <header class="lg:hidden bg-white border-b border-[#e5e7eb] flex items-center px-4 py-3 shrink-0">
+      <button
+        (click)="toggleSidebar()"
+        class="text-[#60728a] hover:text-[#257bf4] transition-colors focus:outline-none"
+        aria-label="Open menu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="ml-3 text-[#0f172a] font-jakarta font-bold text-lg">UEL E-Booking</span>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-1 overflow-y-auto p-6 lg:p-8">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
