@@ -6,7 +6,11 @@ const usersRoutes = require('./routes/users.routes');
 
 const app = express();
 
-app.use(cors());
+// Cho phép gọi từ frontend Vercel
+app.use(cors({
+  origin: '*'
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -17,7 +21,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomsRoutes);
 app.use('/api/users', usersRoutes);
 
-const PORT = 5000;
+// ⚠️ QUAN TRỌNG: dùng process.env.PORT
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
