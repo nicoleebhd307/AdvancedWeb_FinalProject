@@ -11,6 +11,7 @@ import { App } from './app';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 // Feature pages
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -29,6 +30,7 @@ import { ContactSupportComponent } from './features/contact-support/contact-supp
     SidebarComponent,
     MainLayoutComponent,
     FooterComponent,
+    HeaderComponent,
     DashboardComponent,
     FindRoomComponent,
     MyBookingsComponent,

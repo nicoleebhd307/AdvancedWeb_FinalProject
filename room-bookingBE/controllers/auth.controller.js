@@ -1,10 +1,15 @@
-const users = [
-  { id: 1, email: 'admin@uel.edu.vn', password: 'admin123', role: 'admin' },
-  { id: 2, email: 'student1@uel.edu.vn', password: 'student123', role: 'student' },
-  { id: 3, email: 'student2@uel.edu.vn', password: 'student123', role: 'student' },
-];
+const { users, students } = require('../data/mockData');
 
 const UEL_DOMAIN = '@uel.edu.vn';
+
+/** Strip passwordHash and attach student profile for the response. */
+function buildLoginResponse(user) {
+  const { passwordHash, ...safeUser } = user;
+  const profile = students.find((s) => s.userId === user._id) || null;
+  // Token encodes the _id so /api/users/me can decode it without a real JWT library
+  const token = `mock-jwt-${user._id}`;
+  return { token, user: safeUser, profile };
+}
 
 const login = (req, res) => {
   const { email, password } = req.body;
@@ -14,19 +19,15 @@ const login = (req, res) => {
   }
 
   const user = users.find((u) => u.email === email);
-
   if (!user) {
     return res.status(401).json({ message: 'Email not found in the system' });
   }
 
-  if (!password || user.password !== password) {
+  if (!password || user.passwordHash !== password) {
     return res.status(401).json({ message: 'Incorrect password' });
   }
 
-  return res.status(200).json({
-    token: 'mock-jwt-token',
-    user: { id: user.id, email: user.email, role: user.role },
-  });
+  return res.status(200).json(buildLoginResponse(user));
 };
 
 const googleLogin = (req, res) => {
@@ -37,15 +38,11 @@ const googleLogin = (req, res) => {
   }
 
   const user = users.find((u) => u.email === email);
-
   if (!user) {
     return res.status(401).json({ message: 'This Google account is not registered in the system' });
   }
 
-  return res.status(200).json({
-    token: 'mock-jwt-token-google',
-    user: { id: user.id, email: user.email, role: user.role },
-  });
+  return res.status(200).json(buildLoginResponse(user));
 };
 
 module.exports = { login, googleLogin };

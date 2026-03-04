@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
+const roomsRoutes = require('./routes/rooms.routes');
+const usersRoutes = require('./routes/users.routes');
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/rooms', roomsRoutes);
+app.use('/api/users', usersRoutes);
 
 const PORT = 5000;
 
