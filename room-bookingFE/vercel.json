@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "dist/room-booking/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
