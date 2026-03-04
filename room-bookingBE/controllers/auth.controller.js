@@ -44,5 +44,3 @@ const googleLogin = (req, res) => {
 
   return res.status(200).json(buildLoginResponse(user));
 };
-
-module.exports = { login, googleLogin };

@@ -1,4 +1,5 @@
 export interface User {
+<<<<<<< HEAD
   _id: string;
   email: string;
   role: 'admin' | 'student';
@@ -20,4 +21,9 @@ export interface StudentProfile {
 export interface UserWithProfile {
   user: User;
   profile: StudentProfile | null;
+=======
+  id: number;
+  email: string;
+  role: 'admin' | 'student';
+>>>>>>> 802fc94335e1e55ef58e17eead5f49d7a8e6ddc3
 }
